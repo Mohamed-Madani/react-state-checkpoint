@@ -1,22 +1,36 @@
-import logo from './logo.svg';
+// src/App.js
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [person] = useState({
+    fullName: 'John Doe',
+    bio: 'A passionate developer.',
+    imgSrc: 'https://via.placeholder.com/150',
+    profession: 'Software Engineer',
+  });
+
+  const [shows, setShows] = useState(false);
+
+  const toggleShow = () => {
+    setShows(!shows);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Person Profile</h1>
+        <button onClick={toggleShow}>
+          {shows ? 'Hide Profile' : 'Show Profile'}
+        </button>
+        {shows && (
+          <div>
+            <img src={person.imgSrc} alt={person.fullName} />
+            <h2>{person.fullName}</h2>
+            <p>{person.bio}</p>
+            <h3>{person.profession}</h3>
+          </div>
+        )}
       </header>
     </div>
   );
